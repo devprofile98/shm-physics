@@ -57,6 +57,15 @@ class Vector3{
             return x*vector.x + y*vector.y + z*vector.z;
         }
 
+        // function for Cross product of another vector with this
+        Vector3 vectorProduct(const Vector3& vector) const {
+            return Vector3(
+                            y*vector.z - z*vector.y,
+                            z*vector.x - x*vector.z,
+                            x*vector.y - y*vector.x
+                        );
+        }
+
         // **  over load the operators
         // ------------------------
         void operator *=(const real value){
@@ -95,6 +104,20 @@ class Vector3{
         // subtract other vector and return
         Vector3 operator -(const Vector3& vector) const {
             return Vector3(x-vector.x, y-vector.y, z-vector.z);
+        }
+
+        // overload % operator for Cross product
+        Vector3 operator %(const Vector3& vector) const {
+            return Vector3(
+                            y*vector.z - z*vector.y,
+                            z*vector.x - x*vector.z,
+                            x*vector.y - y*vector.x
+                        );
+        }
+
+        // update 'this' with new vector
+        void operator %=(const Vector3& vector){
+            *this = vectorProduct(vector);
         }
 
     private:
