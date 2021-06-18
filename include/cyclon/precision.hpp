@@ -3,6 +3,7 @@
 
 namespace cyclon {
 typedef float rael;
+typedef real_sqrt sqrtf;
 }
 
 #endif
