@@ -13,7 +13,7 @@ set(cyclon_src
     src/particle.cpp
 )
 
-add_executable(playground src/main.cpp ${cyclon_src})
-#add_library(shm-engine SHARED ${opengl_renderer_src} ${shm_src} )
+#add_executable(shmphysics ${cyclon_src})
+add_library(shmphysics SHARED ${cyclon_src})
 
-target_include_directories(playground PUBLIC include/ include/cyclon/)
+target_include_directories(shmphysics PUBLIC include/ include/cyclon/)

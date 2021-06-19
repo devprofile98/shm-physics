@@ -1,6 +1,7 @@
 #ifndef CYCLON_CORE
 #define CYCLON_CORE
 
+#include <math.h>
 #include "precision.hpp"
 
 namespace cyclon {
@@ -19,7 +20,7 @@ class Vector3{
         real x, y, z;
 
         real magnitude() const{
-            return real_sqrt(x*x + y*y + z*z);
+            return real_sqrt(float(x*x + y*y + z*z));
         }
 
         real squareMagnitude(){
@@ -29,7 +30,7 @@ class Vector3{
         void normalize(){
             real l = magnitude();
             if (l>0){
-                (*this) *= ((real))1/l;
+                (*this) *= ((real)1)/l;
             }
         }
 
