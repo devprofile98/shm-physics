@@ -2,8 +2,10 @@
 #define CYCLON_PRECISION
 
 namespace cyclon {
-typedef float rael;
-typedef real_sqrt sqrtf;
+    typedef float real;
+
+    #define real_sqrt sqrtf;
+    #define real_pow powf
 }
 
 #endif

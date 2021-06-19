@@ -1,6 +1,8 @@
 #ifndef CYCLON_CORE
 #define CYCLON_CORE
 
+#include "precision.hpp"
+
 namespace cyclon {
 
 class Vector3{
