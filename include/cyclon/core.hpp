@@ -86,6 +86,10 @@ class Vector3{
             return x*v.x + y*v.y + z*v.z;
         }
 
+        Vector3 operator *(const real value) const{
+            return Vector3{x*value, y*value, z*value};
+        }
+
         // adding other vector to this
         void operator +=(const Vector3& vector){
             x += vector.x;
@@ -121,6 +125,10 @@ class Vector3{
         // update 'this' with new vector
         void operator %=(const Vector3& vector){
             *this = vectorProduct(vector);
+        }
+
+        void clear(){
+            x = y = z = 0;
         }
 
     private:

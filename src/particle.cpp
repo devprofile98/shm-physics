@@ -21,6 +21,31 @@ namespace cyclon {
 
         // impose drag
         velocity *= real_pow(damping, duration);
+
+        // clear accumulator
+        clearAccumulator();
+    }
+
+    void Particle::clearAccumulator(){
+        forceAccum.clear();
+    }
+
+    void Particle::addForce(const Vector3 &force){
+        forceAccum += force;
+    }
+
+    bool Particle::hasFiniteMass()
+    {
+        return inverseMass >= 0.0f;
+    }
+
+    real Particle::getMass()
+    {
+        if (inverseMass == 0)
+            return 1000000; // some very big mass
+        else{
+            return ((real)1.0)/inverseMass;
+        }
     }
 
 }

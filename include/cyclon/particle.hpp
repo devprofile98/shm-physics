@@ -21,6 +21,11 @@ namespace cyclon {
 
         // integrator definition
         void integrate(real duration);
+        void clearAccumulator();
+        void addForce(const Vector3& force);
+
+        bool hasFiniteMass();
+        real getMass();
     };
 }
 #endif //CYCLON_PARTICLE

@@ -11,9 +11,10 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 set(cyclon_src
     src/particle.cpp
+    src/pfgen.cpp
 )
 
 #add_executable(shmphysics ${cyclon_src})
-add_library(shmphysics SHARED ${cyclon_src})
+add_library(shm-physic SHARED ${cyclon_src})
 
-target_include_directories(shmphysics PUBLIC include/ include/cyclon/)
+target_include_directories(shm-physic PUBLIC include/ include/cyclon/)
