@@ -48,4 +48,15 @@ namespace cyclon {
         }
     }
 
+    Vector3 Particle::getPosition()
+    {
+        return  this->position;
+    }
+
+    void Particle::getPosition(Vector3 *position) const
+    {
+        *position = this->position;
+    }
+
+
 }

@@ -37,5 +37,44 @@ namespace cyclon {
         Vector3 gravity;
     };
 
+    // force generator for spring like object
+    // -------------------------------------
+    class ParticleSpring: ParticleForceGenerator{
+            Particle *other; // particle at the other end
+            real springConstant;
+            real restLength;
+
+        public:
+            ParticleSpring(Particle *other, real springConstant, real restLength);
+
+            virtual void updateForce(Particle *particle, real duration) override;
+
+    };
+
+    // force generator for anchor spring like object
+    // ---------------------------------------------
+    class ParticleAnchorSpring: ParticleForceGenerator{
+        Vector3 *anchor;
+        real springConstant;
+        real restLength;
+
+    public:
+        ParticleAnchorSpring(Vector3 *anchor, real springConstant, real restLength);
+        virtual void updateForce(Particle *particle, real duration) override;
+    };
+
+    // force generator for bungee like spring object
+    // ---------------------------------------------
+    class ParticleBungee:ParticleForceGenerator{
+        Particle *other; // particle at the other end
+        real springConstant;
+        real restLength;
+
+    public:
+        ParticleBungee(Particle *other, real springConstant, real restLength);
+
+        virtual void updateForce(Particle *particle, real duration) override;
+    };
+
 }
 #endif //CYCLON_FORCEGENERATOR

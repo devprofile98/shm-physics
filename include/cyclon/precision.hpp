@@ -6,6 +6,7 @@ namespace cyclon {
 
     #define real_sqrt sqrtf
     #define real_pow powf
+    #define real_abs fabsf
 }
 
 #endif
