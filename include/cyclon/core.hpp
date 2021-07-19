@@ -78,7 +78,7 @@ class Vector3{
         }
 
         // vector by vector multiplication
-        Vector3 operator *(const Vector3 vector) const {
+        Vector3 operator *(Vector3 vector) const {
             return Vector3(x * vector.x, y * vector.y, z * vector.z);
         }
 

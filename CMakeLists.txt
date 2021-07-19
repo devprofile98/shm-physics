@@ -12,6 +12,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 set(cyclon_src
     src/particle.cpp
     src/pfgen.cpp
+    src/pcontacts.cpp
 )
 
 #add_executable(shmphysics ${cyclon_src})

@@ -48,14 +48,29 @@ namespace cyclon {
         }
     }
 
+    real Particle::getInverseMass()
+    {
+        return inverseMass;
+    }
+
     Vector3 Particle::getPosition()
     {
         return  this->position;
     }
 
+    Vector3 Particle::getVelocity()
+    {
+        return this->velocity;
+    }
+
     void Particle::getPosition(Vector3 *position) const
     {
         *position = this->position;
+    }
+
+    void Particle::setVelocity(const Vector3 &velocity)
+    {
+        this->velocity = velocity;
     }
 
 

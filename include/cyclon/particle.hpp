@@ -26,8 +26,12 @@ namespace cyclon {
 
         bool hasFiniteMass();
         real getMass();
+        real getInverseMass();
         Vector3 getPosition();
+        Vector3 getVelocity();
         void getPosition(Vector3 *position) const ;
+
+        void setVelocity(const Vector3& velocity);
     };
 }
 #endif //CYCLON_PARTICLE

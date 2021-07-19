@@ -76,5 +76,17 @@ namespace cyclon {
         virtual void updateForce(Particle *particle, real duration) override;
     };
 
+    // force generator for buoyancy
+    // ----------------------------
+    class ParticleBuoyancy: ParticleForceGenerator{
+        real maxDepth;
+        real volume;
+        real waterHeight;
+        real liquidDensity;
+    public:
+        ParticleBuoyancy(real maxDepth, real volume, real waterHeight, real liquidDensity=1000.0f);
+        virtual void updateForce(Particle *particle, real duration) override;
+    };
+
 }
 #endif //CYCLON_FORCEGENERATOR
