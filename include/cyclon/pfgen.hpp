@@ -1,5 +1,5 @@
 #ifndef CYCLON_FORCE_GENERATOR
-#define CYCLON_FORCEGENERATOR
+#define CYCLON_FORCE_GENERATOR
 
 #include "particle.hpp"
 #include <vector>
@@ -89,4 +89,4 @@ namespace cyclon {
     };
 
 }
-#endif //CYCLON_FORCEGENERATOR
+#endif //CYCLON_FORCE_GENERATOR
