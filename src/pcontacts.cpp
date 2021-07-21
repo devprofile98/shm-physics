@@ -62,6 +62,11 @@ namespace cyclon {
         this->iterations = iterations;
     }
 
+    void ParticleContactResolver::setIterations(uint32_t iterations)
+    {
+        ParticleContactResolver::iterations = iterations;
+    }
+
     void ParticleContactResolver::resolveContacts(ParticleContact *contactArray, uint32_t numContact, real duration)
     {
         uint32_t iterationUsed = 0;
