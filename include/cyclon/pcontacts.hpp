@@ -31,10 +31,7 @@ namespace cyclon {
     protected:
         uint32_t iterations;
         uint32_t iterationUsed;
-
-
     };
-
 
     class ParticleContactGenerator{
     public:
