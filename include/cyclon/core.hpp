@@ -2,6 +2,7 @@
 #define CYCLON_CORE
 
 #include <math.h>
+#include <cstdint>
 #include "precision.hpp"
 
 namespace cyclon {

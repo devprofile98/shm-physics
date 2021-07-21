@@ -73,5 +73,10 @@ namespace cyclon {
         this->velocity = velocity;
     }
 
+    void Particle::setPosition(const Vector3 &position)
+    {
+        this->position = position;
+    }
+
 
 }

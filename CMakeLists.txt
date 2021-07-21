@@ -13,6 +13,8 @@ set(cyclon_src
     src/particle.cpp
     src/pfgen.cpp
     src/pcontacts.cpp
+    src/plinks.cpp
+    src/pworld.cpp
 )
 
 #add_executable(shmphysics ${cyclon_src})

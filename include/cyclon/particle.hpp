@@ -32,6 +32,7 @@ namespace cyclon {
         void getPosition(Vector3 *position) const ;
 
         void setVelocity(const Vector3& velocity);
+        void setPosition(const Vector3& position);
     };
 }
 #endif //CYCLON_PARTICLE
