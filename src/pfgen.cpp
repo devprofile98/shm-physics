@@ -53,6 +53,13 @@ void ParticleSpring::updateForce(Particle *particle, real duration){
     particle->addForce(force);
 }
 
+
+ParticleAnchorSpring::ParticleAnchorSpring(Vector3 *anchor, real springConstant, real restLength)
+    :anchor(anchor), springConstant(springConstant), restLength(restLength)
+{
+
+}
+
 void ParticleAnchorSpring::updateForce(Particle *particle, real duration){
     Vector3 force;
     particle->getPosition(&force);
