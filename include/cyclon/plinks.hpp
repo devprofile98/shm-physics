@@ -19,6 +19,8 @@ namespace cyclon {
 
 
     class ParticleCable: public ParticleLink{
+    public:
+        ParticleCable(real maxLength, real restitution);
         real maxLength;
         real restitution;
 
@@ -28,6 +30,7 @@ namespace cyclon {
 
     class ParticleRod: public ParticleLink{
     public:
+        ParticleRod(real length);
         real length;
         real currentLength() const;
         virtual uint32_t fillContact(ParticleContact *contact, uint32_t limit) const override;

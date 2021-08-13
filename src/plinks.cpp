@@ -7,6 +7,12 @@ namespace cyclon {
         return relativePos.magnitude();
     }
 
+    ParticleCable::ParticleCable(real maxLength, real restitution)
+        :maxLength(maxLength), restitution(restitution)
+    {
+
+    }
+
     uint32_t ParticleCable::fillContact(ParticleContact *contact, uint32_t limit) const{
         real length = currentLength();
         if (length < maxLength){
@@ -23,6 +29,11 @@ namespace cyclon {
         contact->pentration = length - maxLength;
         contact->restitution = restitution;
         return 1;
+    }
+
+    ParticleRod::ParticleRod(real length)
+    {
+        this->length = length;
     }
 
     real ParticleRod::currentLength() const
