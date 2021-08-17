@@ -137,6 +137,8 @@ private:
 };
 }
 
+// represent a 3 x 3 matrix
+// ------------------------------
 class Matrix3{
 public:
     real data[9];
@@ -156,9 +158,48 @@ public:
                     data[6] * o.data[2] + data[7] * o.data[5] + data[8] * o.data[8],
         };
     }
+
+    void setInverse(const Matrix3& m){
+        real t4 = m.data[0] * m.data[4];
+        real t6 = m.data[0] * m.data[5];
+        real t8 = m.data[1] * m.data[3];
+        real t10 = m.data[2] * m.data[3];
+        real t12 = m.data[1] * m.data[6];
+        real t14 = m.data[2] * m.data[6];
+
+        // the determinant
+        real t16 = (t4*m.data[8] - t6*m.data[7] - t8*m.data[8] + t10*m.data[7] + t12*m.data[5] + t14*m.data[4]);
+
+        if (t16 == (real)0.0f) return;
+        real t17 = 1/t16;
+        data[0] = (m.data[4]*m.data[8] - m.data[5]*m.data[7])*t17;
+        data[1] = -(m.data[1]*m.data[8] - m.data[2]*m.data[7])*t17;
+        data[2] = (m.data[1]*m.data[5] - m.data[2]*m.data[4])*t17;
+        data[3] = -(m.data[3]*m.data[8] - m.data[5]*m.data[6])*t17;
+        data[4] = (m.data[0]*m.data[8] - t14)*t17;
+        data[5] = -(t6 - t10)*t17;
+        data[6] = (m.data[3]*m.data[7] - m.data[4]*m.data[6])*t17;
+        data[7] = -(m.data[0]*m.data[7] - t12)*t17;
+        data[8] = (t4 - t8)*t17;
+    }
+
+    Matrix3 inverse() {
+        Matrix3 result;
+        result.setInverse(*this);
+        return result;
+    }
+
+    void invert(){
+        setInverse(*this);
+    }
+
+    void setTranspose(const Matrix3& m);
+    Matrix3 transpose() const;
 };
 
 
+// represent a 3 x 4 matrix
+// ------------------------------
 class Matrix4{
 public:
     real data[12];
@@ -170,7 +211,6 @@ public:
                     data[8] * vector.x + data[9] * vector.y + data[10] * vector.z + data[11],
         };
     }
-
 
     Matrix4 operator * (const Matrix4& o) const{
         Matrix4 result;
@@ -204,8 +244,10 @@ public:
         return result;
     }
 
-
-
+    real getDeterminant() const;
+    void setInverse(const Matrix4& m);
+    Matrix4 inverse() const;
+    void invert();
 
 };
 

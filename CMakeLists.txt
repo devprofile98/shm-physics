@@ -15,6 +15,7 @@ set(cyclon_src
     src/pcontacts.cpp
     src/plinks.cpp
     src/pworld.cpp
+    src/core.cpp
 )
 
 #add_executable(shmphysics ${cyclon_src})
