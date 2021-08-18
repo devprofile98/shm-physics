@@ -284,6 +284,7 @@ public:
     void setOrientationAndPos(const Quaternion &q, const Vector3 &pos);
 
     Vector3 transformInverse(const Vector3 &vector) const;
+    Vector3 transformInverseDirection(const Vector3& vector) const;
 
 
 };
