@@ -16,6 +16,8 @@ set(cyclon_src
     src/plinks.cpp
     src/pworld.cpp
     src/core.cpp
+    src/body.cpp
+    src/fgen.cpp
 )
 
 #add_executable(shmphysics ${cyclon_src})

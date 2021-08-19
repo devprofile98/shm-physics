@@ -173,6 +173,14 @@ public:
             data[6] = data[7] = data[8] = 0;
     }
 
+    Matrix3(real c0, real c1, real c2, real c3, real c4, real c5,
+        real c6, real c7, real c8)
+    {
+        data[0] = c0; data[1] = c1; data[2] = c2;
+        data[3] = c3; data[4] = c4; data[5] = c5;
+        data[6] = c6; data[7] = c7; data[8] = c8;
+    }
+
     real data[9];
 
     Matrix3 operator * (const Matrix3& o) const{
@@ -284,7 +292,12 @@ public:
     void setOrientationAndPos(const Quaternion &q, const Vector3 &pos);
 
     Vector3 transformInverse(const Vector3 &vector) const;
-
+    Vector3 transformInverseDirection(const Vector3& vector) const;
+    Vector3 transformDirection(const Vector3& vector) const;
+    Vector3 transform(const Vector3 &vector) const
+    {
+        return (*this) * vector;
+    }
 
 };
 
