@@ -18,6 +18,8 @@ set(cyclon_src
     src/core.cpp
     src/body.cpp
     src/fgen.cpp
+    src/world.cpp
+    src/collide_coarse.cpp
 )
 
 #add_executable(shmphysics ${cyclon_src})
