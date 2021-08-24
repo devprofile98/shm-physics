@@ -3,6 +3,43 @@
 using namespace cyclon;
 
 template<typename BVC>
+BVHNode<BVC>::BVHNode(BVHNode *parent, const BVC &volume, RigidBody *body)
+    : parent(parent), volume(volume), body(body)
+{
+    children[0] = children[1] = nullptr;
+}
+
+
+template<typename BVC>
+BVHNode<BVC>::~BVHNode()
+{
+    if (parent){
+        BVHNode<BVC> *sibling;
+        if (parent->children[0] == this) sibling=parent->children[1];
+        else sibling=parent->children[0];
+
+        parent->volume = sibling->volume;
+        parent->body = sibling->body;
+        parent->children[0] = sibling->children[0];
+        parent->children[1] = sibling->children[1];
+//        parent->children = sibling->children;
+        sibling->parent = sibling->body = sibling->children[0] = sibling->children[1] = nullptr;
+        delete sibling;
+
+        parent->recalculateBoundingVolume();
+    }
+
+    if (children[0]){
+        children[0]->parent = nullptr;
+        delete children[0];
+    }
+    if (children[1]){
+        children[1]->parent = nullptr;
+        delete children[1];
+    }
+}
+
+template<typename BVC>
 bool BVHNode<BVC>::isLeaf() const
 {
     return (body != nullptr);
@@ -60,6 +97,36 @@ unsigned BVHNode<BVC>::getPotentialContacts(PotentialContact *contacts, unsigned
     children[0]->getPotentialContactsWith(children[1], contacts, limit);
 }
 
+template<typename BVC>
+void BVHNode<BVC>::recalculateBoundingVolume(bool recurse)
+{
+    if (isLeaf()) return;
+
+    volume = BVC{children[0]->volume, children[1]->volume};
+
+    if (parent) parent->recalculateBoundingVolume(true);
+}
+
+template<typename BVC>
+void BVHNode<BVC>::insert(RigidBody *newBody, const BVC &NewVolume)
+{
+    if(isLeaf()){
+        children[0] = new BVHNode<BVC>{this, volume, body};
+        children[1] = new BVHNode<BVC>{this, NewVolume, newBody};
+        this->body = nullptr;
+        recalculateBoundingVolume();
+    }
+    else{
+        if(children[0]->volume.getGrowth(NewVolume) <
+                children[1]->volume.getGrowth(NewVolume)){
+            children[0]->insert(newBody, NewVolume);
+        }
+        else{
+            children[1]->insert(newBody, NewVolume);
+        }
+    }
+}
+
 BoundingSphere::BoundingSphere(const Vector3 &center, real radius)
     :center(center), radius(radius)
 {
@@ -103,6 +170,15 @@ BoundingSphere::BoundingSphere(const BoundingSphere &one, const BoundingSphere &
         }
     }
 
+}
+
+real BoundingSphere::getGrowth(const BoundingSphere &other) const
+{
+    BoundingSphere newSphere(*this, other);
+
+    // We return a value proportional to the change in surface
+    // area of the sphere.
+    return newSphere.radius*newSphere.radius - radius*radius;
 }
 
 bool BoundingSphere::overlaps(BoundingSphere *other) const
